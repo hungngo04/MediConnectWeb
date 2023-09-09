@@ -23,10 +23,10 @@ class HeroOne extends Component {
                         <div className="row">
                             <div className="col-lg-6 col-12 col-md-10">
                                 <div className="hero-slide-left">
-                                    <h2>Better Life Through</h2>
-                                    <h1>Better Dentistry</h1>
-                                    <p>Join us to a fun and friendly dental environment. Our professionals are working so hard to see smile on your face that you deserve! We are dedicated about our duties.</p>
-                                    <a href=".#" className="theme-btn fill-btn">Appointment</a>
+                                    <h2>Connecting you</h2>
+                                    <h1>With the right Doctors</h1>
+                                    <p>We believe in leveraging the power of artificial intelligence to connect people with the right doctors based on their symptoms. We understand that finding the right healthcare professional can be a daunting task, especially when you're not sure which specialty or expertise you need. That's where our AI-powered platform comes in.</p>
+                                    <a href=".#" className="theme-btn fill-btn">Let's go</a>
                                     <a href=".#" className="theme-btn btn_black">Learn More</a>
                                 </div>
                             </div>

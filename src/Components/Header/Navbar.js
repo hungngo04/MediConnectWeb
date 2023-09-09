@@ -11,7 +11,7 @@ class Navbar extends Component {
                         <div className="row align-items-center">
                             <div className="col-md-3 col-lg-2 d-flex col-5">
                                 <Link className="navbar-brand logo" to='/'>
-                                    <img src={require("../../assets/img/logo.png") } alt="donto" />
+                                    <img src={require("../../assets/img/medi-connect-logo.png") } alt="donto" />
                                 </Link>
                             </div>
                             <div className="col-lg-10 col-md-9 d-none d-lg-block text-lg-right">
@@ -19,10 +19,9 @@ class Navbar extends Component {
                                     <ul className="menu-items">
                                         <li><Link to='/'>home</Link></li>
                                         <li><Link to='/Page/About'>about</Link></li>
-                                        <li><Link to='/Page/ServiceDetails'>Services</Link></li>
-                                        <li><Link to='/Page/DentistDetails'>Dentist</Link></li>
+                                        <li><Link to='/Page/Contact'>Connect with our doctors</Link></li>
+                                        <li><Link to='/Page/DentistDetails'>Doctors</Link></li>
                                         <li><Link to='/Page/Blog'>Blog</Link></li>
-                                        <li><Link to='/Page/Contact'>Contact</Link></li>
                                     </ul>
                                 </nav>
                             </div>

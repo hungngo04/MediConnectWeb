@@ -1,12 +1,46 @@
 import React, { Component } from 'react'
 import Banner from '../Banner';
-
+import axios from 'axios';
 
 class Contact extends Component {
+    state = {
+        symptoms: ''
+    };
+    
+    handleInputChange = (event) => {
+        this.setState({ symptoms: event.target.value })
+    };
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const prompt = {
+            "model": "gpt-3.5-turbo",
+            "messages": [{"role": "user", "content": "Given these symptoms ${this.state.symptoms}, what kind of specialist should the patient see? Answer in JSON with 1 field: specialist"}],
+        }
+
+        try {
+            const response = await axios.post('https://api.openai.com/v1/chat/completions', prompt, {
+                headers: {
+                    'Authorization': `Bearer ${process.env.REACT_APP_MY_SECRET_KEY}`,
+                    'Content-Type': 'application/json'
+                  }            
+            });
+
+            const message = response.data.choices[0].message;
+            const content = JSON.parse(message.content);
+            const specialist = content.specialist;
+
+            alert(`We will connect you with a ${specialist}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
-                <Banner pageTitle='Contact Us' />
+                <Banner pageTitle='Connect with us!' />
 
                 <section className="contact-us-wrapper section-padding">
                     <div className="contact-information">
@@ -53,24 +87,24 @@ class Contact extends Component {
                     </div> 
                     <div className="contact-form-wraper">
                         <div className="container">
-                            <h1>Get In Touch</h1>
-                            <form className="row">
+                            <h3>Tell us your symptoms, and we will connect you with the right doctor!</h3>
+                            <form className="row" onSubmit={this.handleSubmit}>
                                 <div className="col-lg-6 col-md-6 col-12">
-                                    <input type="text" placeholder="name" />
+                                    <input type="text" placeholder="Your name" />
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-12">
-                                    <input type="email" placeholder="email" />
+                                    <input type="email" placeholder="Your email" />
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-12">
-                                    <input type="text" placeholder="phone" />
+                                    <input type="text" placeholder="Your phone" />
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-12">
-                                    <input type="text" placeholder="subject" />
+                                    <input type="text" placeholder="Your subject" />
                                 </div>
                                 <div className="col-lg-12 col-12">
-                                    <textarea name="message" placeholder="message" defaultValue={""} />
+                                    <textarea name="message" placeholder="How do you feel?" defaultValue={""} onChange={this.handleInputChange}/>
                                 </div>
-                                <button className="contact-submit-btn" type="submit">Contact Us</button>
+                                <button className="contact-submit-btn" type="submit">Connect</button>
                             </form>
                         </div>
                     </div> 
